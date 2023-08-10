@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -54,7 +55,7 @@ class ProductCategoryController extends Controller
             }
         }
 
-        $categories = $query->get();
+        $categories = $query->orderByDesc('id')->get();
 
         if ($request->ajax()) {
             return DataTables::of($categories)
@@ -168,11 +169,24 @@ class ProductCategoryController extends Controller
 
         $formData['code'] = uniqid();
 
-        try {
-            $categories  = $this->productCategoryService->store($formData);
-        } catch (\Exception $e) {
-            return response()->json('Error');
+        $formData['created_by'] = auth()->user()->id;
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
+
+        if ($formData['status'] == 1) {
+            $formData['status'] = true;
+        }else {
+            $formData['status'] = false;
         }
+
+
+        $productCategory = ProductCategory::create($formData);
+
+        // try {
+        //     $categories  = $this->productCategoryService->store($formData);
+        // } catch (\Exception $e) {
+        //     return response()->json('Error');
+        // }
 
         return response()->json('Product Category Created Successfully');
 

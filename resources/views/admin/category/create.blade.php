@@ -67,9 +67,11 @@
             error: function(err) {
                 let error = err.responseJSON;
 
+                $('.submit_button').prop('type', 'submit');
+
                 $.each(error.errors, function (key, error){
 
-                    $('.submit_button').prop('type', 'submit');
+                    // $('.submit_button').prop('type', 'submit');
                     $('.error_' + key + '').html(error[0]);
                 });
             }

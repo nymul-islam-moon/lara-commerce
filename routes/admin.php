@@ -14,7 +14,6 @@ Route::middleware(['is_admin'])->prefix('admin')->group(function () {
     Route::get('/home', [AdminController::class, 'admin'])->name('admin.home');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-
     Route::controller(ProductCategoryController::class)->prefix('product/category')->group(function () {
         Route::get('/', 'index')->name('product.category.index');
         Route::get('/create', 'create')->name('dashboard.productCategory.create');
