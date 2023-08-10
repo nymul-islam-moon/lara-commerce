@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\ProductCategory;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\StoreSubCategoryRequest;
@@ -176,13 +177,13 @@ class SubCategoryController extends Controller
 
         $tableName = $productSubCategoryObj->getTable();
 
+        $formData['slug'] = Str::slug($formData['name'], '-');
+
         $formData['created_by_id'] = \auth::user()->id;
 
         $formData['code'] = isset($request->code) ? $request->code : $this->codeGenerateService->productCategoryCode($tableName);
 
-
         $subCategories  = SubCategory::create($formData);
-
 
         return response()->json('Product Sub-Category Created Successfully');
     }
@@ -222,6 +223,8 @@ class SubCategoryController extends Controller
         $formData = $request->validated();
 
         $formData['updated_by_id'] = auth()->user()->id;
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
 
         $subCategory->update($formData);
 
