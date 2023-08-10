@@ -14,7 +14,7 @@ use App\Http\Requests\UpdateProductCategoryRequest;
 use App\Interface\ProductCategoryInterface;
 use App\Interface\CodeGenerateInterface;
 
-class ProductCategoryController extends Controller
+class CategoryController extends Controller
 {
 
     /**
@@ -71,11 +71,11 @@ class ProductCategoryController extends Controller
                     $html .='</button>';
                     $html .='<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">';
                     if ($row->deleted_at == null) {
-                        $html .='<li><a class="dropdown-item" href="'. route('dashboard.productCategory.edit', $row->id) .'" id="edit_btn">Edit</a></li>';
-                        $html .='<li><a class="dropdown-item" href="'. route('dashboard.productCategory.destroy', $row->id) .'" id="delete_btn">Delete</a></li>';
+                        $html .='<li><a class="dropdown-item" href="'. route('product.category.edit', $row->id) .'" id="edit_btn">Edit</a></li>';
+                        $html .='<li><a class="dropdown-item" href="'. route('product.category.destroy', $row->id) .'" id="delete_btn">Delete</a></li>';
                     } else {
-                        $html .='<li><a class="dropdown-item" href="'. route('dashboard.productCategory.restore', $row->id) .'" id="restore_btn">Restore</a></li>';
-                        $html .='<li><a class="dropdown-item" href="'. route('dashboard.productCategory.forcedelete', $row->id) .'" id="force_delete_btn">Hard Delete</a></li>';
+                        $html .='<li><a class="dropdown-item" href="'. route('product.category.restore', $row->id) .'" id="restore_btn">Restore</a></li>';
+                        $html .='<li><a class="dropdown-item" href="'. route('product.category.forcedelete', $row->id) .'" id="force_delete_btn">Hard Delete</a></li>';
                     }
                     $html .='</ul>';
                     $html .='</div>';
@@ -119,13 +119,13 @@ class ProductCategoryController extends Controller
                     if ($row->status == 1) {
 
                         $html .='<div class="form-check form-switch">';
-                        $html .='<input class="form-check-input" href="'. route('dashboard.productCategory.deactive', $row->id) .'" type="checkbox" role="switch" id="deactive_btn" checked="">&nbsp;';
+                        $html .='<input class="form-check-input" href="'. route('product.category.deactive', $row->id) .'" type="checkbox" role="switch" id="deactive_btn" checked="">&nbsp;';
                         $html .='<label class="form-check-label" for="SwitchCheck4"> Active</label>';
                         $html .='</div>';
 
                     } else {
                         $html .='<div class="form-check form-switch">';
-                        $html .='<input class="form-check-input" type="checkbox" href="'. route('dashboard.productCategory.active', $row->id) .'" role="switch" id="active_btn">&nbsp;';
+                        $html .='<input class="form-check-input" type="checkbox" href="'. route('product.category.active', $row->id) .'" role="switch" id="active_btn">&nbsp;';
                         $html .='<label class="form-check-label" for="SwitchCheck4"> De-active</label>';
                         $html .='</div>';
                     }
