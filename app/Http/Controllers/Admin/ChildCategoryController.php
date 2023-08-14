@@ -169,7 +169,15 @@ class ChildCategoryController extends Controller
      */
     public function store(StoreChildCategoryRequest $request)
     {
-        //
+        $formData = $request->validated();
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
+
+        $formData['created_by_id'] = \auth::user()->id;
+
+        $childCategory  = ChildCategory::create($formData);
+
+        return response()->json('Product Child Category Created Successfully');
     }
 
     /**
@@ -191,7 +199,8 @@ class ChildCategoryController extends Controller
      */
     public function edit(ChildCategory $childCategory)
     {
-        //
+        $subCategories = SubCategory::all();
+        return view('admin.child_category.edit', compact('childCategory', 'subCategories'));
     }
 
     /**
@@ -203,7 +212,15 @@ class ChildCategoryController extends Controller
      */
     public function update(UpdateChildCategoryRequest $request, ChildCategory $childCategory)
     {
-        //
+        $formData = $request->validated();
+
+        $formData['updated_by_id'] = auth()->user()->id;
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
+
+        $childCategory->update($formData);
+
+        return response()->json('Product Child Category Updated Successfully');
     }
 
     /**
@@ -214,6 +231,140 @@ class ChildCategoryController extends Controller
      */
     public function destroy(ChildCategory $childCategory)
     {
-        //
+        $childCategory->status = 0;
+        $childCategory->save();
+        $childCategory->delete();
+
+        return response()->json('Product Child Category Deleted Successfully');
     }
+
+
+    /**
+     * Active the specified resource from storage.
+     *
+     * @param  \App\Models\ChildCategory  $childCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function active(ChildCategory $childCategory)
+    {
+        $childCategory->status = 1;
+        $childCategory->save();
+        return response()->json('Product Child Category Activated Successfully');
+    }
+
+
+    /**
+     * De-active the specified resource from storage.
+     *
+     * @param  \App\Models\ChildCategory  $childCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function deactive(ChildCategory $childCategory)
+    {
+        $childCategory->status = 0;
+        $childCategory->save();
+        return response()->json('Product Child Category De-activated Successfully');
+    }
+
+    /**
+     * Restore the soft deleted data.
+     *
+     * @param  \App\Models\ChildCategory  $childCategory
+     * @return \Illuminate\Http\Response
+     */
+
+    public function restore($childCategory)
+    {
+
+        ChildCategory::where('id', $childCategory)->withTrashed()->restore();
+
+        return response()->json('Product Child Category Restored Successfully');
+    }
+
+
+
+    /**
+     * Force Delete the soft deleted data.
+    *
+    * @param  \App\Models\ChildCategory  $childCategory
+    * @return \Illuminate\Http\Response
+    */
+
+    public function forceDelete($childCategory)
+    {
+        ChildCategory::where('id', $childCategory)->withTrashed()->forceDelete();
+
+        return response()->json('Product Child Category Permanently Deleted Successfully');
+    }
+
+
+    /**
+     * Force Delete the soft deleted data.
+    *
+    * @param  \App\Models\ChildCategory  $childCategory
+    * @return \Illuminate\Http\Response
+    */
+
+    public function destroyAll(Request $request)
+    {
+
+        $ids = $request->ids;
+
+        $idArr = (array) $ids;
+
+        foreach ($idArr as $key=> $id) {
+            $childCategory = ChildCategory::where('id', $id)->first();
+            $childCategory->status = false;
+            $childCategory->save();
+            $childCategory->delete();
+        }
+        return response()->json('Product Child Category Deleted Successfully');
+    }
+
+
+    /**
+     * Restore all the soft deleted data
+    *
+    * @param  \App\Models\ChildCategory  $childCategory
+    * @return \Illuminate\Http\Response
+    */
+
+    public function restoreAll(Request $request)
+    {
+
+        $ids = $request->ids;
+
+        $idArr = (array) $ids;
+
+        foreach ($idArr as $key=> $id) {
+            $childCategory = ChildCategory::where('id', $id)->withTrashed()->restore();
+        }
+
+        return response()->json('Product Child Category Restored Successfully');
+
+    }
+
+
+    /**
+     * Permanently Delete all the soft deleted data
+    *
+    * @param  \App\Models\ChildCategory  $childCategory
+    * @return \Illuminate\Http\Response
+    */
+
+    public function permanentDestroyAll(Request $request)
+    {
+
+        $ids = $request->ids;
+
+        $idArr = (array) $ids;
+
+        foreach ($idArr as $key=> $id) {
+            $childCategory = ChildCategory::where('id', $id)->withTrashed()->forceDelete();
+        }
+
+        return response()->json('Product Child Category Permanently Deleted Successfully');
+
+    }
+
 }

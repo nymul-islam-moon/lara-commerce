@@ -173,15 +173,9 @@ class SubCategoryController extends Controller
     {
         $formData = $request->validated();
 
-        $productSubCategoryObj = new SubCategory();
-
-        $tableName = $productSubCategoryObj->getTable();
-
         $formData['slug'] = Str::slug($formData['name'], '-');
 
         $formData['created_by_id'] = \auth::user()->id;
-
-        $formData['code'] = isset($request->code) ? $request->code : $this->codeGenerateService->productCategoryCode($tableName);
 
         $subCategories  = SubCategory::create($formData);
 
