@@ -76,7 +76,7 @@
                     <div class="collapse menu-dropdown" id="sidebarApps">
                         <ul class="nav nav-sm flex-column">
 
-                            <li class="nav-item {{ request()->routeIs('product.category.index') ? 'active' : '' }}">
+                            <li class="nav-item {{ request()->routeIs('product.category.*') ? 'active' : '' }}">
                                 <a href="{{ route('product.category.index') }}" class="nav-link {{ request()->routeIs('product.category.index') ? 'active' : '' }}" data-key="t-calendar"> Category </a>
                             </li>
                             <li class="nav-item">

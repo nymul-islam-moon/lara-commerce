@@ -14,7 +14,7 @@ class ProductCategory extends Model
 
     protected $table = 'product_categories';
 
-    protected $fillable = ['created_by_id', 'updated_by_id', 'code' ,'name', 'slug', 'status', 'prefix'];
+    protected $fillable = ['created_by_id', 'updated_by_id', 'name', 'slug', 'status'];
 
 
     public function created_by()

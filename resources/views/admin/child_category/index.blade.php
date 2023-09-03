@@ -18,71 +18,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Tasks List</h4>
+                        <h4 class="mb-sm-0">Chield Category</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tasks</a></li>
-                                <li class="breadcrumb-item active">Tasks List</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Chield category</a></li>
+                                <li class="breadcrumb-item active">Chield Category List</li>
                             </ol>
                         </div>
 
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Product Categories</p>
-                                </div>
-                                {{-- <div class="flex-shrink-0">
-                                    <h5 class="text-success fs-14 mb-0">
-                                        <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +16.24 %
-                                    </h5>
-                                </div> --}}
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_category_count" data-target="0">0</span></h4>
-                                    <a href="#" class="text-decoration-underline">View net earnings</a>
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Active Category</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" id="active_category_count" data-target="0">0</span>k</h4>
-                                    <a href="#" class="text-decoration-underline">View net earnings</a>
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="row">
@@ -105,10 +51,7 @@
                                 <h5 class="card-title mb-0 flex-grow-1">All Tasks</h5>
                                 <div class="flex-shrink-0">
                                    <div class="d-flex flex-wrap gap-2">
-
-                                        {{-- <button class="btn btn-danger add-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="ri-add-line align-bottom me-1"></i> Create Task</button> --}}
-                                        <button class="btn btn-danger add-btn" href="{{ route('product.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
-
+                                    <button class="btn btn-danger add-btn" href="{{ route('product.childCategory.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
                                         <button class="btn btn-soft-danger" id="temp_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="permanent_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="restore_all_selected"><i class="ri-refresh-line"></i></button>
@@ -165,7 +108,7 @@
                         <div class="card-body">
                             <div class="live-preview">
                                 <div class="table-responsive table-card">
-                                    <table class="table align-middle table-nowrap mb-0 data_tbl category_table">
+                                    <table class="table align-middle table-nowrap mb-0 data_tbl child_category_table">
                                         <thead class="table-light">
                                             <tr>
                                                 <th scope="col" style="width: 46px;">
@@ -175,10 +118,10 @@
                                                 </th>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Action</th>
-                                                <th scope="col">Prefix</th>
-                                                <th scope="col">Category Name</th>
+                                                <th scope="col">SubCategory Name</th>
+                                                <th scope="col">Child Category Name</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Category Slug</th>
+                                                <th scope="col">Child Category Slug</th>
                                                 <th scope="col">Created By</th>
                                                 <th scope="col">Updated By</th>
                                             </tr>
@@ -196,13 +139,15 @@
                 </div>
             </div>
 
-            <div class="modal fade zoomIn" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+
+            <div class="modal fade zoomIn" id="addChildCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg" id="add-content">
                     <h1>hi</h1>
                 </div>
             </div>
 
-            <div class="modal fade zoomIn" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+
+            <div class="modal fade zoomIn" id="editSubCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg" id="edit-content">
 
                 </div>
@@ -233,28 +178,12 @@
 <script>
     $(document).ready(function() {
 
-        /**
-         * Get all information
-         * */
-         function getAllData()
-        {
-            $.ajax({
-                url: "{{ route('product.category.getAllData') }}",
-                type: 'GET',
-
-                success: function(data) {
-                    var total_category_count = document.getElementById('total_category_count');
-                    total_category_count.dataset.target = data.allCategory;
-                }
-            });
-        }
-
 
         /**
          * Yajra DataTable for show all data
          *
          * */
-        var service__category__table = $('.category_table').DataTable({
+        var sub__category__table = $('.child_category_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
@@ -269,7 +198,7 @@
                 [5, 10, 25, 50, 100, 500, 1000, "All"],
             ],
             ajax: {
-                url: "{{ route('product.category.index') }}",
+                url: "{{ route('product.childCategory.index') }}",
                 data: function(e) {
                     // e.center_id = $('#center_id').val();
                     e.f_status = $('#f_status').val();
@@ -280,26 +209,22 @@
                 {data: 'checkbox', name: 'checkbox'},
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'action', name: 'action'},
-                {data: 'prefix', name: 'prefix'},
+                {data: 'product_subcategory_id', name: 'product_subcategory_id'},
                 {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
                 {data: 'slug', name: 'slug'},
-                {data: 'created_by', name: 'created_by'},
+                {data: 'created_by', name: 'created_by', visible: false},
                 {data: 'updated_by', name: 'updated_by'},
-
             ]
         });
 
 
-        /**
-         * Open Product Category Crete Form
+         /**
+         * Open Product Child Category Crete Form
          * @author Nymul Islam Moon < towkir1997@gmail.com >
          * */
-         /**
-         * Open Edit Modal
-         * */
 
-         $(document).on('click', '#add_btn', function(e) {
+        $(document).on('click', '#add_btn', function(e) {
             e.preventDefault();
 
             var url = $(this).attr('href');
@@ -311,37 +236,7 @@
 
                     $('#add-content').empty();
                     $('#add-content').html(data);
-                    $('#addCategoryModal').modal('show');
-                },
-                error: function(err) {
-                    $('.data_preloader').hide();
-                    if (err.status == 0) {
-                        toastr.error('Net Connetion Error. Reload This Page.');
-                    } else if (err.status == 500) {
-                        toastr.error('Server Error, Please contact to the support team.');
-                    }
-                }
-            });
-        });
-
-
-        /**
-         * Open Edit Modal
-         * */
-
-         $(document).on('click', '#edit_btn', function(e) {
-            e.preventDefault();
-
-            var url = $(this).attr('href');
-
-            $.ajax({
-                url: url,
-                type: 'get',
-                success: function(data) {
-
-                    $('#edit-content').empty();
-                    $('#edit-content').html(data);
-                    $('#editCategoryModal').modal('show');
+                    $('#addChildCategoryModal').modal('show');
                 },
                 error: function(err) {
                     $('.data_preloader').hide();
@@ -394,11 +289,11 @@
                 type: 'delete',
                 success: function(data) {
                     toastr.error(data)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 }
             });
         });
@@ -409,13 +304,13 @@
          * */
 
         $('.submitable').on('change', function(e) {
-            service__category__table.ajax.reload();
+            sub__category__table.ajax.reload();
         });
 
 
-         /**
-         * Filter Change detect for delete and restore button show
-         * */
+        /**
+        * Filter Change detect for delete and restore button show
+        * */
 
         $('#f_soft_delete').on('change', function(e) {
             $("#restore_all_selected").toggleClass("d-none");
@@ -438,11 +333,11 @@
                 type: 'post',
                 success: function(data) {
                     toastr.success(data)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 }
             });
         });
@@ -461,11 +356,11 @@
                 type: 'post',
                 success: function(data) {
                     toastr.error(data)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    service__category__table.ajax.reload();
+                    sub__category__table.ajax.reload();
                 }
             });
         });
@@ -495,11 +390,11 @@
                         type: 'post',
                         success: function(data) {
                             toastr.error(data)
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                         }
                     });
                 }
@@ -573,7 +468,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.destroyAll') }}",
+                        url: "{{ route('product.subCategory.destroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -582,12 +477,12 @@
 
                         success: function(data) {
                             toastr.error(data);
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                         }
                     });
                 }
@@ -617,7 +512,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.restoreAll') }}",
+                        url: "{{ route('product.subCategory.restoreAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -626,12 +521,12 @@
 
                         success: function(data) {
                             toastr.success(data);
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                         }
                     });
                 }
@@ -661,7 +556,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.permanentDestroyAll') }}",
+                        url: "{{ route('product.subCategory.permanentDestroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -670,17 +565,48 @@
 
                         success: function(data) {
                             toastr.error(data);
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            service__category__table.ajax.reload();
+                            sub__category__table.ajax.reload();
                         }
                     });
                 }
             })
         });
+
+
+        /**
+         * Open Edit Modal
+         * */
+
+        $(document).on('click', '#edit_btn', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function(data) {
+
+                    $('#edit-content').empty();
+                    $('#edit-content').html(data);
+                    $('#editSubCategoryModal').modal('show');
+                },
+                error: function(err) {
+                    $('.data_preloader').hide();
+                    if (err.status == 0) {
+                        toastr.error('Net Connetion Error. Reload This Page.');
+                    } else if (err.status == 500) {
+                        toastr.error('Server Error, Please contact to the support team.');
+                    }
+                }
+            });
+        });
+
 
     });
 </script>

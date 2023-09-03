@@ -15,7 +15,18 @@ return new class extends Migration
     {
         Schema::create('child_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_subcategory_id');
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->unsignedBigInteger('updated_by_id')->nullable();
+            $table->string('name');
+            $table->tinyInteger('status')->nullable();
+            $table->string('slug')->nullable();
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('product_subcategory_id')->references('id')->on('product_sub_categories')->onDelete('CASCADE');
+            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('SET NULL');
+            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }
 

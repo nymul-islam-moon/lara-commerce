@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 
+use App\Models\User;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -119,7 +120,7 @@ class ChildCategoryController extends Controller
 
                     try {
                         $subCategory = SubCategory::where('id', $row->product_subcategory_id)->first();
-                        return childCategory->name;
+                        return $subCategory->name;
                     } catch (\Throwable $th) {
                         return 'N/A';
                     }
@@ -158,7 +159,8 @@ class ChildCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $subCategories =SubCategory::where('status', 1)->get();
+        return view('admin.child_category.create', compact('subCategories'));
     }
 
     /**
