@@ -83,6 +83,9 @@
                                 <a href="{{ route('product.subCategory.index') }}" class="nav-link" data-key="t-calendar"> Sub-Category </a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('product.childCategory.index') }}" class="nav-link" data-key="t-calendar"> Chield-Category </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="apps-chat.html" class="nav-link" data-key="t-chat"> Chat </a>
                             </li>
                             <li class="nav-item">

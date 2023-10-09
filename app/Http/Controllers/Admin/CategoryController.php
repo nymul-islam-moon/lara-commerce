@@ -136,6 +136,8 @@ class CategoryController extends Controller
         }
 
 
+        // $total_category =
+
         return view('admin.category.index', compact('categories'));
    }
 
