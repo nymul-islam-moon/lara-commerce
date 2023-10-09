@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Models\User;
+use Image;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -179,6 +180,38 @@ class CategoryController extends Controller
             $formData['status'] = true;
         }else {
             $formData['status'] = false;
+        }
+
+        if($request->hasFile('image')) {
+            $image = Image::make($request->file('image'));
+
+            /**
+
+             * Main Image Upload on Folder Code
+
+             */
+
+            $imageName = time().'-'.$request->file('image')->getClientOriginalName();
+
+            $destinationPath = public_path('uploads/');
+
+            $image->save($destinationPath.$imageName);
+
+
+
+            /**
+
+             * Generate Thumbnail Image Upload on Folder Code
+
+             */
+
+            $destinationPathThumbnail = public_path('uploads/');
+
+            $image->resize(100,100);
+
+            $image->save($destinationPathThumbnail.$imageName);
+
+            $formData['image'] = $imageName;
         }
 
 

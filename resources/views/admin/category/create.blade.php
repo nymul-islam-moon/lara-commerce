@@ -8,13 +8,14 @@
         @method('POST')
         <div class="modal-body">
             <div class="row g-3">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label for="category_name" class="form-label">Category Name</label>
                     <input type="text" id="category_name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Category name">
                     <span class="error error_name text-danger"></span>
                 </div>
+
                 <!--end col-->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <label for="category_status" class="form-label">Status</label>
                     <select class="form-control" name="status" id="category_status">
                         <option selected>Status</option>
@@ -23,6 +24,13 @@
                     </select>
                     <span class="error error_status text-danger"></span>
                 </div>
+
+                <div class="col-lg-4">
+                    <label for="category_image" class="form-label">Category Image</label>
+                    <input type="file" id="category_image" name="image" class="form-control">
+                    <span class="error error_image text-danger"></span>
+                </div>
+
             </div>
         </div>
         <div class="modal-footer" style="display: block;">

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('status')->nullable();
             $table->string('slug')->nullable();
+            $table->string('image')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

@@ -26,6 +26,7 @@ class StoreProductCategoryRequest extends FormRequest
         return [
             'name' => 'required|string|min:3|max:100|unique:product_categories,name',
             'status' => 'required|integer',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
