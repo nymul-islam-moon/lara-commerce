@@ -196,6 +196,12 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
 
+        /**
+         * Spatie Package added
+         */
+        Spatie\Permission\PermissionServiceProvider::class,
+
+
         /*
          * Application Service Providers...
          */

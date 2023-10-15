@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->tinyInteger('gender')->nullable();
             $table->boolean('is_admin')->nullable();
+            $table->boolean('status')->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
