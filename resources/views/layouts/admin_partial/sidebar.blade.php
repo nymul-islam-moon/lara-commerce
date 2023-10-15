@@ -361,21 +361,22 @@
 
 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Settings</span></li>
+                {{-- @if( auth()->user()->can('user list') ) --}}
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                            <i class="ri-account-circle-line"></i> <span data-key="t-authentication">User Role Permission</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarAuth">
+                            <ul class="nav nav-sm flex-column">
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
-                        <i class="ri-account-circle-line"></i> <span data-key="t-authentication">User Role Permission</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarAuth">
-                        <ul class="nav nav-sm flex-column">
+                                <li class="nav-item {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.user.index') }}" class="nav-link {{ request()->routeIs('admin.user.index') ? 'active' : '' }}" data-key="t-calendar"> Users </a>
+                                </li>
 
-                            <li class="nav-item {{ request()->routeIs('product.category.*') ? 'active' : '' }}">
-                                <a href="{{ route('product.category.index') }}" class="nav-link {{ request()->routeIs('product.category.index') ? 'active' : '' }}" data-key="t-calendar"> Users </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {{-- @endif --}}
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
