@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategory extends Model
+
+class BlogCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
-    protected $table = 'product_categories';
+    protected $table = 'blog_categories';
 
-    protected $fillable = ['created_by_id', 'updated_by_id', 'name', 'slug', 'status'];
+    protected $fillable = [ 'created_by_id', 'updated_by_id', 'name', 'status', 'image' ];
 
 
     public function created_by()

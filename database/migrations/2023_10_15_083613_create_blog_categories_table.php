@@ -13,21 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_sub_categories', function (Blueprint $table) {
+        Schema::create('blog_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_category_id');
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('updated_by_id')->nullable();
-            $table->string('code')->nullable();
             $table->string('name');
             $table->tinyInteger('status')->nullable();
-            $table->string('slug')->nullable();
+            $table->text('image');
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('CASCADE');
-            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('SET NULL');
-            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('SET NULL');
+            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('CASCADE');
+
         });
     }
 
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sub_categories');
+        Schema::dropIfExists('blog_categories');
     }
 };

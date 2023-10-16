@@ -107,7 +107,7 @@
                                    <div class="d-flex flex-wrap gap-2">
 
                                         {{-- <button class="btn btn-danger add-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="ri-add-line align-bottom me-1"></i> Create Task</button> --}}
-                                        <button class="btn btn-danger add-btn" href="{{ route('product.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
+                                        <button class="btn btn-danger add-btn" href="{{ route('blog.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
 
                                         <button class="btn btn-soft-danger" id="temp_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="permanent_delete_all"><i class="ri-delete-bin-2-line"></i></button>
@@ -238,7 +238,7 @@
          function getAllData()
         {
             $.ajax({
-                url: "{{ route('product.category.getAllData') }}",
+                url: "{{ route('blog.category.getAllData') }}",
                 type: 'GET',
 
                 success: function(data) {
@@ -570,7 +570,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.destroyAll') }}",
+                        url: "{{ route('blog.category.destroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -614,7 +614,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.restoreAll') }}",
+                        url: "{{ route('blog.category.restoreAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -658,7 +658,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.permanentDestroyAll') }}",
+                        url: "{{ route('blog.category.permanentDestroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,

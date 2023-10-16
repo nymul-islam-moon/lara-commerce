@@ -1,27 +1,34 @@
 <div class="modal-content border-0">
     <div class="modal-header p-3 bg-soft-info">
-        <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Blog Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
     </div>
-    <form class="tablelist-form" autocomplete="off" id="add_category_form" action="{{ route('product.category.store') }}" method="POST">
+    <form class="tablelist-form" autocomplete="off" id="add_category_form" action="{{ route('blog.category.store') }}" method="POST">
         @csrf
         @method('POST')
         <div class="modal-body">
             <div class="row g-3">
                 <div class="col-lg-6">
                     <label for="category_name" class="form-label">Category Name</label>
-                    <input type="text" id="category_name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Category name">
+                    <input required type="text" id="category_name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Category name">
                     <span class="error error_name text-danger"></span>
                 </div>
                 <!--end col-->
                 <div class="col-lg-6">
                     <label for="category_status" class="form-label">Status</label>
-                    <select class="form-control" name="status" id="category_status">
+                    <select required class="form-control" name="status" id="category_status">
                         <option selected>Status</option>
                         <option value="1" {{ old('status') == 1 ? 'selected' : '' }} >Active</option>
                         <option value="2" {{ old('status') == 2 ? 'selected' : '' }} >De-Active</option>
                     </select>
                     <span class="error error_status text-danger"></span>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <label for="category_image" class="form-label">Image</label>
+                    <input required type="file" id="category_image" name="image" class="form-control" value="{{ old('name') }}" placeholder="Category Image">
+                    <span class="error error_name text-danger"></span>
                 </div>
             </div>
         </div>
