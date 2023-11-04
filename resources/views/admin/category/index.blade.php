@@ -18,12 +18,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Tasks List</h4>
+                        <h4 class="mb-sm-0">Blog Categoory List</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tasks</a></li>
-                                <li class="breadcrumb-item active">Tasks List</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
+                                <li class="breadcrumb-item active">Blog Categoory List</li>
                             </ol>
                         </div>
 
@@ -132,25 +132,14 @@
                 <div class="col-xl-12">
                     <div class="card">
 
-                        {{-- <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Service Tables</h4>
-                            <button type="button" class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal">Add Service</button>
-                            <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
-
-                                </div>
-                            </div>
-                        </div> --}}
-
-
                         <div class="card-header border-0">
                             <div class="d-flex align-items-center">
-                                <h5 class="card-title mb-0 flex-grow-1">All Tasks</h5>
+                                <h5 class="card-title mb-0 flex-grow-1">Blog Category List</h5>
                                 <div class="flex-shrink-0">
                                    <div class="d-flex flex-wrap gap-2">
 
                                         {{-- <button class="btn btn-danger add-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="ri-add-line align-bottom me-1"></i> Create Task</button> --}}
-                                        <button class="btn btn-danger add-btn" href="{{ route('product.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
+                                        <button class="btn btn-danger add-btn" href="{{ route('blog.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Add Category</button>
 
                                         <button class="btn btn-soft-danger" id="temp_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="permanent_delete_all"><i class="ri-delete-bin-2-line"></i></button>
@@ -220,7 +209,7 @@
                                                 <th scope="col">Action</th>
                                                 <th scope="col">Category Name</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Category Slug</th>
+                                                <th scope="col">Image</th>
                                                 <th scope="col">Created By</th>
                                                 <th scope="col">Updated By</th>
                                             </tr>
@@ -275,25 +264,22 @@
 <script>
     $(document).ready(function() {
 
+        /**
+         * Get all information
+         * */
+         function getAllData()
+        {
+            $.ajax({
+                url: "{{ route('product.category.getAllData') }}",
+                type: 'GET',
 
-        function summery( active = false, deactive = false, total = false, trash = false ) {
-
-            let total_data = $('#total_category_count').attr("data-target");
-            let total_active = $('#total_active_category').attr("data-target");
-            let total_deactive = $('#total_deactive_category').attr("data-target");
-            let total_trash = $('#total_trush_category').attr("data-target");
-
-            // if( active ) {
-            //     $('#total_active_category').text(parseInt( total_active ) + 1);
-            //     $('#total_deactive_category').text(parseInt( total_deactive ) - 1);
-            // }
-
-            if( deactive ) {
-                $('#total_active_category').text(parseInt( total_active ) - 1);
-                $('#total_deactive_category').text(parseInt( total_deactive ) + 1);
-            }
-
+                success: function(data) {
+                    var total_category_count = document.getElementById('total_category_count');
+                    total_category_count.dataset.target = data.allCategory;
+                }
+            });
         }
+
 
         /**
          * Yajra DataTable for show all data
@@ -314,7 +300,7 @@
                 [5, 10, 25, 50, 100, 500, 1000, "All"],
             ],
             ajax: {
-                url: "{{ route('product.category.index') }}",
+                url: "{{ route('blog.category.index') }}",
                 data: function(e) {
                     // e.center_id = $('#center_id').val();
                     e.f_status = $('#f_status').val();
@@ -327,7 +313,7 @@
                 {data: 'action', name: 'action'},
                 {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
-                {data: 'slug', name: 'slug'},
+                {data: 'image', name: 'image'},
                 {data: 'created_by', name: 'created_by'},
                 {data: 'updated_by', name: 'updated_by'},
 
@@ -646,7 +632,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.destroyAll') }}",
+                        url: "{{ route('blog.category.destroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -690,7 +676,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.restoreAll') }}",
+                        url: "{{ route('blog.category.restoreAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -734,7 +720,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.category.permanentDestroyAll') }}",
+                        url: "{{ route('blog.category.permanentDestroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,

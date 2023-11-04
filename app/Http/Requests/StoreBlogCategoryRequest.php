@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProductCategoryRequest extends FormRequest
+class StoreBlogCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class UpdateProductCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:100|unique:product_categories,name,' . $this->productCategory->id,
-            'status' => 'required|integer',
+            'name'      => 'required|string|min:3|max:100|unique:blog_categories,name',
+            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'status'    => 'required|integer',
         ];
     }
 
@@ -38,9 +39,11 @@ class UpdateProductCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Product Category Name must be Required',
-            'name.unique' => 'Product Category Name Already Exists',
+            'name.required' => 'Blog Category Name must be Required',
+            'name.unique' => 'Blog Category Name Already Exists',
+            'image.required' => 'Blog image required',
             'status.integer' => 'Select a valid status',
         ];
     }
+
 }

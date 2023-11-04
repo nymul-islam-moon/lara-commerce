@@ -18,12 +18,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Tasks List</h4>
+                        <h4 class="mb-sm-0">Blog Categoory List</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tasks</a></li>
-                                <li class="breadcrumb-item active">Tasks List</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
+                                <li class="breadcrumb-item active">Blog Categoory List</li>
                             </ol>
                         </div>
 
@@ -32,26 +32,72 @@
             </div>
 
             <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Product Categories</p>
+                                </div>
+                                {{-- <div class="flex-shrink-0">
+                                    <h5 class="text-success fs-14 mb-0">
+                                        <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +16.24 %
+                                    </h5>
+                                </div> --}}
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-4">
+                                <div>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_category_count" data-target="0">0</span></h4>
+                                    <a href="#" class="text-decoration-underline">View net earnings</a>
+                                </div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-soft-success rounded fs-3">
+                                        <i class="bx bx-dollar-circle text-success"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Active Category</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-4">
+                                <div>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" id="active_category_count" data-target="0">0</span>k</h4>
+                                    <a href="#" class="text-decoration-underline">View net earnings</a>
+                                </div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-soft-success rounded fs-3">
+                                        <i class="bx bx-dollar-circle text-success"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
 
-                        {{-- <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Service Tables</h4>
-                            <button type="button" class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal">Add Service</button>
-                            <div class="flex-shrink-0">
-                                <div class="form-check form-switch form-switch-right form-switch-md">
-
-                                </div>
-                            </div>
-                        </div> --}}
-
-
                         <div class="card-header border-0">
                             <div class="d-flex align-items-center">
-                                <h5 class="card-title mb-0 flex-grow-1">All Tasks</h5>
+                                <h5 class="card-title mb-0 flex-grow-1">Blog Category List</h5>
                                 <div class="flex-shrink-0">
                                    <div class="d-flex flex-wrap gap-2">
-                                        <button class="btn btn-danger add-btn" data-bs-toggle="modal" data-bs-target="#addSubCategoryModal"><i class="ri-add-line align-bottom me-1"></i> Create Task</button>
+
+                                        {{-- <button class="btn btn-danger add-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i class="ri-add-line align-bottom me-1"></i> Create Task</button> --}}
+                                        <button class="btn btn-danger add-btn" href="{{ route('blog.category.create') }}" id="add_btn"><i class="ri-add-line align-bottom me-1"></i> Add Category</button>
+
                                         <button class="btn btn-soft-danger" id="temp_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="permanent_delete_all"><i class="ri-delete-bin-2-line"></i></button>
                                         <button class="btn btn-soft-danger d-none" id="restore_all_selected"><i class="ri-refresh-line"></i></button>
@@ -108,7 +154,7 @@
                         <div class="card-body">
                             <div class="live-preview">
                                 <div class="table-responsive table-card">
-                                    <table class="table align-middle table-nowrap mb-0 data_tbl sub_category_table">
+                                    <table class="table align-middle table-nowrap mb-0 data_tbl category_table">
                                         <thead class="table-light">
                                             <tr>
                                                 <th scope="col" style="width: 46px;">
@@ -118,11 +164,9 @@
                                                 </th>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Action</th>
-                                                <th scope="col">Code</th>
-                                                <th scope="col">Category Name</th>
-                                                <th scope="col">SubCategory Name</th>
+                                                <th scope="col">Name</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Sub-Category Slug</th>
+                                                <th scope="col">Image</th>
                                                 <th scope="col">Created By</th>
                                                 <th scope="col">Updated By</th>
                                             </tr>
@@ -140,59 +184,13 @@
                 </div>
             </div>
 
-            <div class="modal fade zoomIn" id="addSubCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content border-0">
-                        <div class="modal-header p-3 bg-soft-info">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Sub-Category</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                        </div>
-                        <form class="tablelist-form" autocomplete="off" id="add_subCategory_form" action="{{ route('product.subCategory.store') }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <div class="modal-body">
-                                <div class="row g-3">
-                                    <div class="col-lg-6">
-                                        <label for="subCategory_name" class="form-label">Sub-category Name</label>
-                                        <input type="text" id="subCategory_name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Subcategory name">
-                                        <span class="error error_name text-danger"></span>
-                                    </div>
-
-                                    <div class="col-lg-6">
-                                        <label for="category" class="form-label">Category Name</label>
-                                        <select class="form-control" name="product_category_id" id="category">
-                                            <option selected>Select Product Category</option>
-                                            @foreach ($productCategories as $productCategory)
-                                                <option value="{{ $productCategory->id }}" {{ old('product_category_id') == $productCategory->id ? 'selected' : '' }} >{{ $productCategory->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <span class="error error_product_category_id text-danger"></span>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col-lg-6">
-                                        <label for="category_status" class="form-label">Status</label>
-                                        <select class="form-control" name="status" id="category_status">
-                                            <option selected>Status</option>
-                                            <option value="1" {{ old('status') == 1 ? 'selected' : '' }} >Active</option>
-                                            <option value="2" {{ old('status') == 2 ? 'selected' : '' }} >De-Active</option>
-                                        </select>
-                                        <span class="error error_status text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer" style="display: block;">
-                                <div class="hstack gap-2 justify-content-end">
-                                    <button type="button" class="btn btn-light" id="close-modal" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success submit_button">Add Sub-Category</button>
-                                    <!-- <button type="button" class="btn btn-success" id="edit-btn">Update Task</button> -->
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+            <div class="modal fade zoomIn" id="addCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg" id="add-content">
+                    <h1>hi</h1>
                 </div>
             </div>
 
-            <div class="modal fade zoomIn" id="editSubCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+            <div class="modal fade zoomIn" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-lg" id="edit-content">
 
                 </div>
@@ -223,12 +221,28 @@
 <script>
     $(document).ready(function() {
 
+        /**
+         * Get all information
+         * */
+         function getAllData()
+        {
+            $.ajax({
+                url: "{{ route('blog.category.getAllData') }}",
+                type: 'GET',
+
+                success: function(data) {
+                    var total_category_count = document.getElementById('total_category_count');
+                    total_category_count.dataset.target = data.allCategory;
+                }
+            });
+        }
+
 
         /**
          * Yajra DataTable for show all data
          *
          * */
-        var sub__category__table = $('.sub_category_table').DataTable({
+        var service__category__table = $('.category_table').DataTable({
             processing: true,
             serverSide: true,
             searching: true,
@@ -243,7 +257,7 @@
                 [5, 10, 25, 50, 100, 500, 1000, "All"],
             ],
             ajax: {
-                url: "{{ route('product.subCategory.index') }}",
+                url: "{{ route('blog.category.index') }}",
                 data: function(e) {
                     // e.center_id = $('#center_id').val();
                     e.f_status = $('#f_status').val();
@@ -254,54 +268,75 @@
                 {data: 'checkbox', name: 'checkbox'},
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'action', name: 'action'},
-                {data: 'code', name: 'code'},
-                {data: 'product_category_id', name: 'product_category_id'},
                 {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
-                {data: 'slug', name: 'slug'},
-                {data: 'created_by', name: 'created_by', visible: false},
+                {data: 'image', name: 'image'},
+                {data: 'created_by', name: 'created_by'},
                 {data: 'updated_by', name: 'updated_by'},
+
             ]
         });
 
 
         /**
-         * Add Product Category
-         * @author Nymul Islam Moon < towkir1997islam@gmail.com >
+         * Open Product Category Crete Form
+         * @author Nymul Islam Moon < towkir1997@gmail.com >
          * */
-        $(document).on('submit', '#add_subCategory_form', function(e) {
+         /**
+         * Open Edit Modal
+         * */
+
+         $(document).on('click', '#add_btn', function(e) {
             e.preventDefault();
-            // $('.loading_button').show();
-            var url = $(this).attr('action');
-            $('.submit_button').prop('type', 'button');
+
+            var url = $(this).attr('href');
 
             $.ajax({
                 url: url,
-                type: 'post',
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
+                type: 'get',
                 success: function(data) {
-                    $('#add_subCategory_form')[0].reset();
 
-                    $('#addSubCategoryModal').modal('hide');
-
-                    $('.submit_button').prop('type', 'submit');
-
-                    $('.sub_category_table').DataTable().ajax.reload();
-
-                    toastr.success(data)
-
+                    $('#add-content').empty();
+                    $('#add-content').html(data);
+                    $('#addCategoryModal').modal('show');
                 },
                 error: function(err) {
-                    let error = err.responseJSON;
+                    $('.data_preloader').hide();
+                    if (err.status == 0) {
+                        toastr.error('Net Connetion Error. Reload This Page.');
+                    } else if (err.status == 500) {
+                        toastr.error('Server Error, Please contact to the support team.');
+                    }
+                }
+            });
+        });
 
-                    $.each(error.errors, function (key, error){
 
-                        $('.submit_button').prop('type', 'submit');
-                        $('.error_' + key + '').html(error[0]);
-                    });
+        /**
+         * Open Edit Modal
+         * */
+
+         $(document).on('click', '#edit_btn', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function(data) {
+
+                    $('#edit-content').empty();
+                    $('#edit-content').html(data);
+                    $('#editCategoryModal').modal('show');
+                },
+                error: function(err) {
+                    $('.data_preloader').hide();
+                    if (err.status == 0) {
+                        toastr.error('Net Connetion Error. Reload This Page.');
+                    } else if (err.status == 500) {
+                        toastr.error('Server Error, Please contact to the support team.');
+                    }
                 }
             });
         });
@@ -346,11 +381,11 @@
                 type: 'delete',
                 success: function(data) {
                     toastr.error(data)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 }
             });
         });
@@ -361,13 +396,13 @@
          * */
 
         $('.submitable').on('change', function(e) {
-            sub__category__table.ajax.reload();
+            service__category__table.ajax.reload();
         });
 
 
-        /**
-        * Filter Change detect for delete and restore button show
-        * */
+         /**
+         * Filter Change detect for delete and restore button show
+         * */
 
         $('#f_soft_delete').on('change', function(e) {
             $("#restore_all_selected").toggleClass("d-none");
@@ -390,11 +425,11 @@
                 type: 'post',
                 success: function(data) {
                     toastr.success(data)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 }
             });
         });
@@ -413,11 +448,11 @@
                 type: 'post',
                 success: function(data) {
                     toastr.error(data)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
-                    sub__category__table.ajax.reload();
+                    service__category__table.ajax.reload();
                 }
             });
         });
@@ -447,11 +482,11 @@
                         type: 'post',
                         success: function(data) {
                             toastr.error(data)
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                         }
                     });
                 }
@@ -525,7 +560,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.subCategory.destroyAll') }}",
+                        url: "{{ route('blog.category.destroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -534,12 +569,12 @@
 
                         success: function(data) {
                             toastr.error(data);
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                         }
                     });
                 }
@@ -569,7 +604,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.subCategory.restoreAll') }}",
+                        url: "{{ route('blog.category.restoreAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -578,12 +613,12 @@
 
                         success: function(data) {
                             toastr.success(data);
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                         }
                     });
                 }
@@ -613,7 +648,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "{{ route('product.subCategory.permanentDestroyAll') }}",
+                        url: "{{ route('blog.category.permanentDestroyAll') }}",
                         type: 'DELETE',
                         data: {
                             ids:all_ids,
@@ -622,48 +657,17 @@
 
                         success: function(data) {
                             toastr.error(data);
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                             $("#select_all_ids").prop("checked", false);
                         },
                         error: function(err) {
                             toastr.error(err.responseJSON)
-                            sub__category__table.ajax.reload();
+                            service__category__table.ajax.reload();
                         }
                     });
                 }
             })
         });
-
-
-        /**
-         * Open Edit Modal
-         * */
-
-        $(document).on('click', '#edit_btn', function(e) {
-            e.preventDefault();
-
-            var url = $(this).attr('href');
-
-            $.ajax({
-                url: url,
-                type: 'get',
-                success: function(data) {
-
-                    $('#edit-content').empty();
-                    $('#edit-content').html(data);
-                    $('#editSubCategoryModal').modal('show');
-                },
-                error: function(err) {
-                    $('.data_preloader').hide();
-                    if (err.status == 0) {
-                        toastr.error('Net Connetion Error. Reload This Page.');
-                    } else if (err.status == 500) {
-                        toastr.error('Server Error, Please contact to the support team.');
-                    }
-                }
-            });
-        });
-
 
     });
 </script>

@@ -57,11 +57,6 @@ class CategoryController extends Controller
 
         $categories = $query->orderByDesc('id')->get();
 
-        $total_categories = $categories->where('deleted_at', null)->count();
-        $total_trash_categories = $categories->where('deleted_at', '!=' ,null)->count();
-        $total_active_categories = $categories->where('status', 1)->count();
-        $total_deactive_categories = $categories->where('status', 0)->count();
-
         if ($request->ajax()) {
             return DataTables::of($categories)
                 ->addIndexColumn()
@@ -140,7 +135,10 @@ class CategoryController extends Controller
                 ->make(true);
         }
 
-        return view('admin.category.index', compact('categories', 'total_categories', 'total_trash_categories', 'total_active_categories', 'total_deactive_categories'));
+
+        // $total_category =
+
+        return view('admin.category.index', compact('categories'));
    }
 
    /**
@@ -163,8 +161,13 @@ class CategoryController extends Controller
    {
         $formData = $request->validated();
 
+        $productCaategoryObj = new ProductCategory();
+
+        $tableName = $productCaategoryObj->getTable();
+
         $formData['created_by_id'] = \auth::user()->id;
 
+        $formData['prefix'] = isset($request->code) ? $request->code : $this->codeGenerateService->productCategoryCode($tableName);
 
         $formData['code'] = uniqid();
 
@@ -179,7 +182,7 @@ class CategoryController extends Controller
         }
 
 
-        $productCategory = ProductCategory::create( $formData );
+        $productCategory = ProductCategory::create($formData);
 
         // try {
         //     $categories  = $this->productCategoryService->store($formData);

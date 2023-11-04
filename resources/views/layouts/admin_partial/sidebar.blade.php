@@ -37,6 +37,16 @@
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Dashboard</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('blog.category.*') ? 'active' : '' }}" href="{{ route('blog.category.index') }}">
+                    <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Blog Categorywe</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}" href="{{ route('admin.blog.index') }}">
+                    <i class="ri-dashboard-2-line"></i> <span data-key="t-widgets">Blog</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link active" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
@@ -45,14 +55,13 @@
                     <div class="collapse menu-dropdown" id="sidebarApps">
                         <ul class="nav nav-sm flex-column">
 
-                            <li class="nav-item {{ request()->routeIs('product.category.*') ? 'active' : '' }}">
-                                <a href="{{ route('product.category.index') }}" class="nav-link {{ request()->routeIs('product.category.index') ? 'active' : '' }}" data-key="t-calendar"> Category </a>
+                            <li class="nav-item {{ request()->routeIs('blog.category.*') ? 'active' : '' }}">
+                                <a href="{{ route('blog.category.index') }}" class="nav-link {{ request()->routeIs('blog.category.index') ? 'active' : '' }}" data-key="t-calendar"> Category </a>
+                            </li>
+
+                            <li class="nav-item">
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('product.subCategory.index') }}" class="nav-link" data-key="t-calendar"> Sub-Category </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('product.childCategory.index') }}" class="nav-link" data-key="t-calendar"> Chield-Category </a>
                             </li>
                         </ul>
                     </div>
