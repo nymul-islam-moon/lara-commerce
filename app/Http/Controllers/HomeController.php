@@ -27,7 +27,7 @@ class HomeController extends Controller
         if ( ! Auth::user()->is_admin == 1 ) {
             return view('home');
         } else {
-            return redirect()->back();
+            dd('hi');
         }
     }
 

@@ -23,6 +23,7 @@
                     </select>
                     <span class="error error_status text-danger"></span>
                 </div>
+
             </div>
         </div>
         <div class="modal-footer" style="display: block;">
@@ -61,6 +62,10 @@
 
                 $('.category_table').DataTable().ajax.reload();
 
+                let total_data = $('#total_category_count').attr("data-target");
+
+                $('#total_category_count').text(parseInt( total_data ) + 1);
+
                 toastr.success(data)
 
             },
@@ -77,4 +82,11 @@
             }
         });
     });
+
+    // let getValue = $('#total_category_count').attr("data-target");
+    // $('#total_category_count').attr("data-target");
+
+
+    // console.log(getValue);
+
 </script>

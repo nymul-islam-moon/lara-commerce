@@ -39,16 +39,35 @@
                                 <div class="flex-grow-1">
                                     <p class="text-uppercase fw-medium text-muted mb-0">Total Product Categories</p>
                                 </div>
-                                {{-- <div class="flex-shrink-0">
-                                    <h5 class="text-success fs-14 mb-0">
-                                        <i class="ri-arrow-right-up-line fs-13 align-middle"></i> +16.24 %
-                                    </h5>
-                                </div> --}}
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_category_count" data-target="0">0</span></h4>
-                                    <a href="#" class="text-decoration-underline">View net earnings</a>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_category_count" data-target="{{ $total_categories }}">0</span></h4>
+
+                                </div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-soft-success rounded fs-3">
+                                        <i class="bx bx-dollar-circle text-success"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Active Product Categories</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-4">
+                                <div>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_active_category" data-target="{{ $total_active_categories }}">0</span></h4>
+
                                 </div>
                                 <div class="avatar-sm flex-shrink-0">
                                     <span class="avatar-title bg-soft-success rounded fs-3">
@@ -65,13 +84,13 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Active Category</p>
+                                    <p class="text-uppercase fw-medium text-muted mb-0">Total De-active Product Categories</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-end justify-content-between mt-4">
                                 <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" id="active_category_count" data-target="0">0</span>k</h4>
-                                    <a href="#" class="text-decoration-underline">View net earnings</a>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_deactive_category" data-target="{{ $total_deactive_categories }}">0</span></h4>
+
                                 </div>
                                 <div class="avatar-sm flex-shrink-0">
                                     <span class="avatar-title bg-soft-success rounded fs-3">
@@ -82,6 +101,30 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card card-animate">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1">
+                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Trushed Product Categories</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between mt-4">
+                                <div>
+                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_trush_category" data-target="{{ $total_trash_categories }}">0</span></h4>
+
+                                </div>
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-soft-success rounded fs-3">
+                                        <i class="bx bx-dollar-circle text-success"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 
@@ -175,7 +218,6 @@
                                                 </th>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Action</th>
-                                                <th scope="col">Prefix</th>
                                                 <th scope="col">Category Name</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Category Slug</th>
@@ -233,22 +275,25 @@
 <script>
     $(document).ready(function() {
 
-        /**
-         * Get all information
-         * */
-         function getAllData()
-        {
-            $.ajax({
-                url: "{{ route('product.category.getAllData') }}",
-                type: 'GET',
 
-                success: function(data) {
-                    var total_category_count = document.getElementById('total_category_count');
-                    total_category_count.dataset.target = data.allCategory;
-                }
-            });
+        function summery( active = false, deactive = false, total = false, trash = false ) {
+
+            let total_data = $('#total_category_count').attr("data-target");
+            let total_active = $('#total_active_category').attr("data-target");
+            let total_deactive = $('#total_deactive_category').attr("data-target");
+            let total_trash = $('#total_trush_category').attr("data-target");
+
+            // if( active ) {
+            //     $('#total_active_category').text(parseInt( total_active ) + 1);
+            //     $('#total_deactive_category').text(parseInt( total_deactive ) - 1);
+            // }
+
+            if( deactive ) {
+                $('#total_active_category').text(parseInt( total_active ) - 1);
+                $('#total_deactive_category').text(parseInt( total_deactive ) + 1);
+            }
+
         }
-
 
         /**
          * Yajra DataTable for show all data
@@ -280,7 +325,6 @@
                 {data: 'checkbox', name: 'checkbox'},
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'action', name: 'action'},
-                {data: 'prefix', name: 'prefix'},
                 {data: 'name', name: 'name'},
                 {data: 'status', name: 'status'},
                 {data: 'slug', name: 'slug'},
@@ -395,6 +439,7 @@
                 success: function(data) {
                     toastr.error(data)
                     service__category__table.ajax.reload();
+
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
@@ -415,6 +460,9 @@
 
          /**
          * Filter Change detect for delete and restore button show
+         *
+         * author : Nymul Islam Moon <towkir1997islam@gmail.com>
+         *
          * */
 
         $('#f_soft_delete').on('change', function(e) {
@@ -437,8 +485,20 @@
                 url: url,
                 type: 'post',
                 success: function(data) {
-                    toastr.success(data)
+                    toastr.success(data);
+
+                    /**
+                     * Change the active and de-active toolbar info
+                     * */
+
+                    let total_active = $('#total_active_category').attr("data-target");
+                    let total_deactive = $('#total_deactive_category').attr("data-target");
+
+                    $('#total_active_category').text(parseInt( total_active ) + 1);
+                    $('#total_deactive_category').text(parseInt( total_deactive ) - 1);
+
                     service__category__table.ajax.reload();
+
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
@@ -447,12 +507,12 @@
             });
         });
 
+
         /**
          * De-active Product Category
          * author : Nymul Islam Moon <towkir1997islam@gmail.com>
          * De-active Status
          * */
-
          $(document).on('click', '#deactive_btn', function(e) {
             e.preventDefault();
             var url = $(this).attr('href');
@@ -460,8 +520,21 @@
                 url: url,
                 type: 'post',
                 success: function(data) {
-                    toastr.error(data)
+                    toastr.error(data);
+
+                    /**
+                     * Change the active and de-active toolbar info
+                     * */
+
+                    let total_active = $('#total_active_category').attr("data-target");
+                    let total_deactive = $('#total_deactive_category').attr("data-target");
+
+                    $('#total_active_category').text(parseInt( total_active ) - 1);
+                    $('#total_deactive_category').text(parseInt( total_deactive ) + 1);
+
+
                     service__category__table.ajax.reload();
+
                 },
                 error: function(err) {
                     toastr.error(err.responseJSON)
