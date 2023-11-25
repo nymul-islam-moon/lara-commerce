@@ -32,103 +32,6 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Product Categories</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_category_count" data-target="{{ $total_categories }}">0</span></h4>
-
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Active Product Categories</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_active_category" data-target="{{ $total_active_categories }}">0</span></h4>
-
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total De-active Product Categories</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_deactive_category" data-target="{{ $total_deactive_categories }}">0</span></h4>
-
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-md-6">
-                    <div class="card card-animate">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <p class="text-uppercase fw-medium text-muted mb-0">Total Trushed Product Categories</p>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-end justify-content-between mt-4">
-                                <div>
-                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" id="total_trush_category" data-target="{{ $total_trash_categories }}">0</span></h4>
-
-                                </div>
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-soft-success rounded fs-3">
-                                        <i class="bx bx-dollar-circle text-success"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-            <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
 
@@ -273,6 +176,7 @@
                 url: "{{ route('product.category.getAllData') }}",
                 type: 'GET',
 
+<<<<<<< HEAD
                 success: function(data) {
                     var total_category_count = document.getElementById('total_category_count');
                     total_category_count.dataset.target = data.allCategory;
@@ -281,6 +185,8 @@
         }
 
 
+=======
+>>>>>>> 94e4f2c (fixing sub category)
         /**
          * Yajra DataTable for show all data
          *
@@ -321,10 +227,7 @@
         });
 
 
-        /**
-         * Open Product Category Crete Form
-         * @author Nymul Islam Moon < towkir1997@gmail.com >
-         * */
+
          /**
          * Open Edit Modal
          * */
@@ -743,4 +646,5 @@
 
     });
 </script>
+
 @endpush

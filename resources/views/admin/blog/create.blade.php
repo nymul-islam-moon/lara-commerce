@@ -19,7 +19,7 @@
                     <select required class="form-control" name="status" id="category_status">
                         <option selected>Status</option>
                         <option value="1" {{ old('status') == 1 ? 'selected' : '' }} >Active</option>
-                        <option value="2" {{ old('status') == 2 ? 'selected' : '' }} >De-Active</option>
+                        <option value="0" {{ old('status') == 2 ? 'selected' : '' }} >De-Active</option>
                     </select>
                     <span class="error error_status text-danger"></span>
                 </div>

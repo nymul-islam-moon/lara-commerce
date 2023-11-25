@@ -13,25 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('product_sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_category_id');
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('updated_by_id')->nullable();
-<<<<<<< HEAD:database/migrations/2023_10_16_154602_create_blogs_table.php
-            $table->string('title');
-            $table->tinyInteger('status')->nullable();
-            $table->string('image');
-            $table->longText('desc');
-=======
+            $table->string('code')->nullable();
             $table->string('name');
             $table->boolean('status')->nullable();
             $table->string('slug')->nullable();
->>>>>>> 94e4f2c (fixing sub category):database/migrations/2023_08_10_152423_create_child_categories_table.php
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('CASCADE');
-            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('CASCADE');
+            $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('CASCADE');
+            $table->foreign('created_by_id')->references('id')->on('users')->onDelete('SET NULL');
+            $table->foreign('updated_by_id')->references('id')->on('users')->onDelete('SET NULL');
         });
     }
 
@@ -42,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('product_sub_categories');
     }
 };

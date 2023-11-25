@@ -18,8 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by_id')->nullable();
             $table->unsignedBigInteger('updated_by_id')->nullable();
             $table->string('name');
+<<<<<<< HEAD:database/migrations/2023_10_15_083613_create_blog_categories_table.php
             $table->tinyInteger('status')->nullable();
             $table->text('image');
+=======
+            $table->boolean('status')->nullable();
+            $table->string('slug')->nullable();
+>>>>>>> 94e4f2c (fixing sub category):database/migrations/2023_06_25_101532_create_product_categories_table.php
             $table->softDeletes();
             $table->timestamps();
 

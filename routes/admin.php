@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\SubBlogCategoryController;
 use App\Http\Controllers\Admin\ChildBlogCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RoleController;
 
 Route::get('/admin-login', [LoginController::class, 'adminLogin'])->name('admin.login');
 
@@ -16,7 +15,6 @@ Route::middleware(['is_admin', 'auth'])->prefix('admin')->group(function () {
     Route::get('/home', [AdminController::class, 'admin'])->name('admin.home');
     Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-    Route::resource('roles', RoleController::class);
 
     Route::prefix('user')->group( function () {
         Route::controller(UserController::class)->prefix('/')->group(function () {
@@ -57,6 +55,7 @@ Route::middleware(['is_admin', 'auth'])->prefix('admin')->group(function () {
         });
 
 
+<<<<<<< HEAD
         Route::controller(BlogController::class)->prefix('/blog')->group(function () {
             Route::get('/', 'index')->name('admin.blog.index');
             Route::get('/create', 'create')->name('admin.blog.create');
@@ -72,6 +71,23 @@ Route::middleware(['is_admin', 'auth'])->prefix('admin')->group(function () {
             Route::delete('/permanent-destroy-all', 'permanentDestroyAll')->name('admin.blog.permanentDestroyAll');
             Route::delete('/restore-all', 'restoreAll')->name('admin.blog.restoreAll');
             Route::get('/get-data', 'getAllData')->name('admin.blog.getAllData');
+=======
+        Route::controller(ChildCategoryController::class)->prefix('/child-category')->group(function () {
+            Route::get('/', 'index')->name('product.childCategory.index');
+            Route::get('/create', 'create')->name('product.childCategory.create');
+            Route::post('/store', 'store')->name('product.childCategory.store');
+            Route::get('/{childCategory}/edit', 'edit')->name('product.childCategory.edit');
+            Route::put('/{childCategory}/update', 'update')->name('product.childCategory.update');
+            Route::post('/{childCategory}/active', 'active')->name('product.childCategory.active');
+            Route::post('/{childCategory}/de-active', 'deactive')->name('product.childCategory.deactive');
+            Route::delete('/{childCategory}/destroy', 'destroy')->name('product.childCategory.destroy');
+            Route::post('/{childCategory}/restore', 'restore')->name('product.childCategory.restore');
+            Route::delete('/{childCategory}/force-delete', 'forceDelete')->name('product.childCategory.forcedelete');
+            Route::delete('/destroy-all', 'destroyAll')->name('product.childCategory.destroyAll');
+            Route::delete('/permanent-destroy-all', 'permanentDestroyAll')->name('product.childCategory.permanentDestroyAll');
+            Route::delete('/restore-all', 'restoreAll')->name('product.childCategory.restoreAll');
+            Route::get('/get-data', 'getAllData')->name('product.childCategory.getAllData');
+>>>>>>> 94e4f2c (fixing sub category)
         });
 
     });

@@ -190,7 +190,12 @@
                 </div>
             </div>
 
+<<<<<<< HEAD:resources/views/admin/blog/index.blade.php
             <div class="modal fade zoomIn" id="editCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+=======
+
+            <div class="modal fade zoomIn" id="editChieldCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+>>>>>>> 94e4f2c (fixing sub category):resources/views/admin/child_category/index.blade.php
                 <div class="modal-dialog modal-lg" id="edit-content">
 
                 </div>
@@ -669,6 +674,40 @@
             })
         });
 
+<<<<<<< HEAD:resources/views/admin/blog/index.blade.php
+=======
+
+        /**
+         * Open Edit Modal
+         * */
+
+        $(document).on('click', '#edit_btn', function(e) {
+            e.preventDefault();
+
+            var url = $(this).attr('href');
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function(data) {
+
+                    $('#edit-content').empty();
+                    $('#edit-content').html(data);
+                    $('#editChieldCategoryModal').modal('show');
+                },
+                error: function(err) {
+                    $('.data_preloader').hide();
+                    if (err.status == 0) {
+                        toastr.error('Net Connetion Error. Reload This Page.');
+                    } else if (err.status == 500) {
+                        toastr.error('Server Error, Please contact to the support team.');
+                    }
+                }
+            });
+        });
+
+
+>>>>>>> 94e4f2c (fixing sub category):resources/views/admin/child_category/index.blade.php
     });
 </script>
 @endpush
